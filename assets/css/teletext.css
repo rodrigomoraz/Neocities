@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Estética de teletexto
+   Paleta limitada a los 8 colores reales del teletexto.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+:root {
+  --tt-black: #000000;
+  --tt-red: #ff0000;
+  --tt-green: #00ff00;
+  --tt-yellow: #ffff00;
+  --tt-blue: #0000ff;
+  --tt-magenta: #ff00ff;
+  --tt-cyan: #00ffff;
+  --tt-white: #ffffff;
+
+  --tt-font: "VT323", "Courier New", monospace;
+  --tt-size: clamp(18px, 2.6vw, 26px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--tt-black);
+  color: var(--tt-white);
+}
+
+body {
+  font-family: var(--tt-font);
+  font-size: var(--tt-size);
+  line-height: 1.2;
+  padding: 1rem;
+}
+
+/* Líneas de barrido de un televisor CRT. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.25) 3px
+  );
+}
+
+.tt-screen {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+a {
+  color: var(--tt-cyan);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--tt-white);
+  outline-offset: 2px;
+}
+
+/* ---------- Cabecera ---------- */
+
+.tt-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1ch;
+  flex-wrap: wrap;
+}
+
+.tt-status-left {
+  display: flex;
+  gap: 2ch;
+}
+
+.tt-page-input {
+  color: var(--tt-white);
+  min-width: 6ch;
+}
+
+.tt-site-name {
+  color: var(--tt-yellow);
+}
+
+.tt-clock {
+  margin-left: auto;
+  color: var(--tt-yellow);
+  white-space: pre;
+}
+
+/* ---------- Cinta de mensajes ---------- */
+
+.tt-ticker {
+  position: relative;
+  overflow: hidden;
+  height: 1.4em;
+  margin-top: 0.25rem;
+  background: var(--tt-black);
+  color: var(--tt-green);
+  border-top: 2px solid var(--tt-blue);
+  border-bottom: 2px solid var(--tt-blue);
+}
+
+.tt-ticker-msg {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  white-space: nowrap;
+  line-height: 1.4em;
+}
+
+.tt-ticker-run {
+  animation-name: tt-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.tt-ticker-static {
+  left: 0;
+  padding-left: 1ch;
+}
+
+@keyframes tt-marquee {
+  from {
+    left: 100%;
+    transform: translateX(0);
+  }
+  to {
+    left: 0;
+    transform: translateX(-100%);
+  }
+}
+
+/* ---------- Barra de título (doble altura, como en teletexto) ---------- */
+
+.tt-title {
+  display: flex;
+  gap: 2ch;
+  margin: 0.75rem 0 1rem;
+  padding: 0.15em 1ch;
+  font-size: 2em;
+  font-weight: normal;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.tt-title-num {
+  flex: none;
+}
+
+/* ---------- Contenido ---------- */
+
+.tt-content {
+  min-height: 40vh;
+}
+
+.tt-content h2 {
+  margin: 1em 0 0.25em;
+  font-size: 1.3em;
+  font-weight: normal;
+  color: var(--tt-yellow);
+  text-transform: uppercase;
+}
+
+.tt-content p {
+  margin: 0 0 0.75em;
+}
+
+.tt-content ul:not(.tt-menu) {
+  padding-left: 2ch;
+}
+
+.tt-note {
+  color: var(--tt-cyan);
+}
+
+/* Menús de secciones y subsecciones. */
+
+.tt-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tt-menu li + li {
+  margin-top: 0.25em;
+}
+
+.tt-menu-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1ch;
+  color: var(--tt-white);
+  text-decoration: none;
+}
+
+.tt-menu-num {
+  flex: none;
+  color: var(--tt-accent, var(--tt-yellow));
+}
+
+.tt-menu-dots {
+  flex: 1;
+  min-width: 2ch;
+  border-bottom: 3px dotted var(--tt-accent, var(--tt-white));
+  transform: translateY(-0.3em);
+}
+
+.tt-menu-title {
+  text-align: right;
+}
+
+.tt-menu-link:hover .tt-menu-title,
+.tt-menu-link.tt-selected .tt-menu-title {
+  background: var(--tt-accent, var(--tt-white));
+  color: var(--tt-black);
+}
+
+/* Indicador de selección al navegar con las flechas. */
+.tt-menu-link::before {
+  content: "►";
+  flex: none;
+  visibility: hidden;
+  color: var(--tt-accent, var(--tt-white));
+}
+
+.tt-menu-link.tt-selected::before {
+  visibility: visible;
+}
+
+.tt-menu-link:focus {
+  outline: none;
+}
+
+.tt-empty {
+  color: var(--tt-magenta);
+}
+
+/* ---------- Navegación inferior (botones de colores tipo Fastext) ---------- */
+
+.tt-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.tt-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.3em 0.5ch;
+  text-decoration: none;
+  text-align: center;
+  border: 3px solid transparent;
+}
+
+.tt-nav-num {
+  font-size: 1.4em;
+  line-height: 1;
+}
+
+.tt-nav-label {
+  text-transform: uppercase;
+}
+
+.tt-nav-btn:hover,
+.tt-nav-btn[aria-current="page"] {
+  border-color: var(--tt-white);
+  outline: 3px solid var(--tt-black);
+  outline-offset: -6px;
+}
+
+.tt-nav-btn.tt-selected {
+  border-color: var(--tt-white);
+  outline: 3px dashed var(--tt-black);
+  outline-offset: -6px;
+  animation: tt-blink 1s steps(1) infinite;
+}
+
+@keyframes tt-blink {
+  50% {
+    border-color: var(--tt-black);
+  }
+}
+
+/* ---------- Leyenda de controles ---------- */
+
+.tt-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em 2ch;
+  margin: 1rem 0 0;
+  color: var(--tt-cyan);
+}
+
+.tt-controls kbd {
+  font-family: inherit;
+  color: var(--tt-yellow);
+}
+
+.tt-noscript {
+  color: var(--tt-yellow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tt-ticker-run,
+  .tt-nav-btn.tt-selected {
+    animation: none;
+  }
+}
