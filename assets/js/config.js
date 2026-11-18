@@ -10,13 +10,13 @@
  * `rating` acepta valores de 1 a 5 en pasos de 0.5 (p. ej. 3.5 → ★★★½).
  */
 window.TELETEXT_CONFIG = {
-  siteName: "TELETEXTO RODRI",
+  siteName: "CANAL RODRI",
 
   // Mensajes de la cinta superior (se ciclan de derecha a izquierda).
   tickerMessages: [
-    "Bienvenido a mi rincón de Neocities",
-    "Escribe un número de página (p. ej. 201) para saltar directamente",
-    "Nuevas reseñas próximamente en las páginas 200, 300 y 400",
+    "Qué frío hace aquí en la cima",
+    "Arriba el Cruz Azul",
+    "Anúnciate aquí",
     "Gracias por tu visita"
   ],
 
@@ -46,10 +46,10 @@ window.TELETEXT_CONFIG = {
       color: "green",
       dir: "secciones/200-videojuegos",
       pages: [
-        { number: 201, title: "Videojuego de ejemplo 1", rating: 5 },
-        { number: 202, title: "Videojuego de ejemplo 2", rating: 4.5 },
-        { number: 203, title: "Videojuego de ejemplo 3", rating: 3 },
-        { number: 204, title: "Videojuego de ejemplo 4", rating: 1.5 }
+        { number: 201, title: "Ghost of Yotei", rating: 4.5 },
+        { number: 202, title: "Tomodachi Life", rating: 4 },
+        { number: 203, title: "Kirby Air Riders", rating: 4.5 },
+        { number: 204, title: "Pokemon Brilliant Diamond", rating: 2.5 }
       ]
     },
     {
@@ -58,10 +58,10 @@ window.TELETEXT_CONFIG = {
       color: "yellow",
       dir: "secciones/300-peliculas",
       pages: [
-        { number: 301, title: "Película de ejemplo 1", rating: 4 },
-        { number: 302, title: "Película de ejemplo 2", rating: 3.5 },
-        { number: 303, title: "Película de ejemplo 3", rating: 2 },
-        { number: 304, title: "Película de ejemplo 4", rating: 2.5 }
+        { number: 301, title: "Ceniza en la boca", rating: 2.5 },
+        { number: 302, title: "Resident Evil", rating: 4 },
+        { number: 303, title: "Sleep", rating: 3.5 },
+        { number: 304, title: "En el camino", rating: 3 }
       ]
     },
     {
@@ -70,10 +70,10 @@ window.TELETEXT_CONFIG = {
       color: "cyan",
       dir: "secciones/400-otros",
       pages: [
-        { number: 401, title: "Reseña de ejemplo 1", rating: 5 },
-        { number: 402, title: "Reseña de ejemplo 2", rating: 4 },
-        { number: 403, title: "Reseña de ejemplo 3", rating: 3.5 },
-        { number: 404, title: "Reseña de ejemplo 4", rating: 1 }
+        { number: 401, title: "Muse", rating: 4.5 },
+        { number: 402, title: "We3", rating: 4 },
+        { number: 403, title: "9060", rating: 4.5 },
+        { number: 404, title: "Sushi Go!", rating: 4 }
       ]
     }
   ]

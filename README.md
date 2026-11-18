@@ -1,4 +1,4 @@
-# Teletexto Rodri
+# Canal Rodri
 
 Página personal para [Neocities](https://neocities.org) con estética de teletexto.
 Hecha solo con HTML, CSS y JavaScript estándar (sin dependencias ni paso de compilación).
